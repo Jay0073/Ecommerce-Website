@@ -11,9 +11,7 @@ app.use(express.json());
 app.use(cors());
 
 // database connection
-mongoose.connect(
-  "mongodb+srv://Jay:jay8765@myclusters.srqka.mongodb.net/e-commerce"
-);
+
 
 // api creation
 
@@ -38,6 +36,10 @@ const upload = multer({ storage: storage });
 app.use("/images", express.static("upload/images"));
 
 app.post("/upload", upload.single("product"), (req, res) => {
+  console.log(port)
+  console.log(res)
+  console.log(req)
+  console.log(req.file.filename)
   res.json({
     success: 1,
     image_url: `http://localhost:${port}/images/${req.file.filename}`,
